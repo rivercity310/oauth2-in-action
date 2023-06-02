@@ -1,12 +1,20 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/oauth2
-    name: local-postgres
+    url: jdbc:postgresql://db:5432/oauth2
+    name: postgres
     password: 1111
+
   jpa:
     hibernate:
       ddl-auto: create
 
     show-sql: true
     open-in-view: false
+    defer-datasource-initialization: true
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql.init.mode: always
