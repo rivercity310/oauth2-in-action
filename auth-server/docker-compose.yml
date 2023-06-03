@@ -1,12 +1,12 @@
 version: '3.7'
 
 services:
-  application:
+  auth-server:
     container_name: auth-server
 
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
 
     ports:
       - "8080:8080"
