@@ -19,6 +19,16 @@ services:
     links:
       - db
 
+  app-server:
+    container_name: app-server
+
+    build:
+      context: ../business/.
+      dockerfile: ../business/Dockerfile
+
+    ports:
+      - "9090:9090"
+
   db:
     container_name: local-postgres
     image: postgres:latest
