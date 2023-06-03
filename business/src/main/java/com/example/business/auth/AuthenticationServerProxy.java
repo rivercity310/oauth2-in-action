@@ -18,7 +18,7 @@ public class AuthenticationServerProxy {
     private String baseUrl;
 
     public void sendAuth(String username, String password) {
-        String url = baseUrl + "/user/auth";
+        String url = baseUrl + "/member/auth";
 
         Member body = new Member();
         body.setUsername(username);

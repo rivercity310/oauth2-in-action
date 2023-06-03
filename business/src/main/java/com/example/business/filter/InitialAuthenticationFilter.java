@@ -1,7 +1,9 @@
 package com.example.business.filter;
 
 import com.example.business.auth.OtpAuthentication;
+import com.example.business.auth.OtpAuthenticationProvider;
 import com.example.business.auth.UsernamePasswordAuthentication;
+import com.example.business.auth.UsernamePasswordAuthenticationProvider;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
@@ -23,8 +25,9 @@ import java.util.Map;
 @Component
 public class InitialAuthenticationFilter extends OncePerRequestFilter {
     /* 상황에 맞는 인증 논리를 가진 인증관리자 자동 주입됨 */
-    @Autowired
-    private AuthenticationManager manager;
+    @Autowired private UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider;
+
+    @Autowired private OtpAuthenticationProvider otpAuthenticationProvider;
 
     @Value("${jwt.signing.key}")
     private String signingKey;
@@ -35,13 +38,14 @@ public class InitialAuthenticationFilter extends OncePerRequestFilter {
         String password = request.getHeader("password");
         String code = request.getHeader("code");
 
+
         if (code == null) {
             Authentication a = new UsernamePasswordAuthentication(username, password);
-            manager.authenticate(a);
+            usernamePasswordAuthenticationProvider.authenticate(a);
         }
 
         else {
-            Authentication a = manager.authenticate(new OtpAuthentication(username, code));
+            Authentication a = otpAuthenticationProvider.authenticate(new OtpAuthentication(username, code));
             SecretKey key = Keys.hmacShaKeyFor(signingKey.getBytes(StandardCharsets.UTF_8));
 
             String jwt = Jwts.builder()
