@@ -43,7 +43,7 @@ spring:
 
 # JWT ??
 jwt:
-  secretKey: DA321J3I1DUSJ3QJEALJKAjdlk2j31kd2J3KD1weqkqk32l133K2123JH123HSU32j31j3qwe
+  secretKey: 'DA321J3I1DUSJ3QJEALJKAjdlk2j31kd2J3KD1weqkqk32l133K2123JH123HSU32j31j3qwe'
 
   access:
     expiration: 3600000
