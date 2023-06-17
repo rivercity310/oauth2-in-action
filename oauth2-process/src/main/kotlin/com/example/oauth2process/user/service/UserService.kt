@@ -15,11 +15,11 @@ class UserService(
     private val passwordEncoder: PasswordEncoder
 ) {
     fun signUp(userSignUpDto: UserSignUpDto) {
-        if (userRepository.findByEmail(userSignUpDto.email).isPresent) {
+        if (userRepository.findByEmail(userSignUpDto.email) != null) {
             throw Exception("이미 존재하는 Email")
         }
 
-        if (userRepository.findByNickname(userSignUpDto.nickname).isPresent) {
+        if (userRepository.findByNickname(userSignUpDto.nickname) != null) {
             throw Exception("이미 존재하는 Nickname")
         }
 

@@ -1,7 +1,16 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql//localhost:5432/oauth2
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://0.0.0.0:3306/oauth2
+    username: root
+    password: 1111
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
 
   security:
     oauth2:
