@@ -14,10 +14,10 @@ import java.util.Date
 @Service
 class JwtService(
     @Value("\${jwt.secretKey}") private val secretKey: String,
-    @Value("\${jwt.access.expiration}") private val accessTokenExpirationPeriod: Long,
-    @Value("\${jwt.refresh.expiration}") private val refreshTokenExpirationPeriod: Long,
-    @Value("\${jwt.access.header}") private val accessHeader: String,
-    @Value("\${jwt.refresh.header}") private val refreshHeader: String,
+    @Value("\${jwt.access.expiration}") val accessTokenExpirationPeriod: Long,
+    @Value("\${jwt.refresh.expiration}") val refreshTokenExpirationPeriod: Long,
+    @Value("\${jwt.access.header}") val accessHeader: String,
+    @Value("\${jwt.refresh.header}") val refreshHeader: String,
     private val userRepository: UserRepository
 ) {
     companion object {

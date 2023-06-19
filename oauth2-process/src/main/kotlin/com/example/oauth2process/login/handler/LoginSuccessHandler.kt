@@ -15,8 +15,9 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 class LoginSuccessHandler(
     private val jwtService: JwtService,
     private val userRepository: UserRepository,
-    @Value("\${jwt.access.expiration}") private val accessTokenExpiration: String
 ): SimpleUrlAuthenticationSuccessHandler() {
+    @Value("\${jwt.access.expiration}") private lateinit var accessTokenExpiration: String
+
     companion object {
         private val log: Logger = LoggerFactory.getLogger(LoginSuccessHandler::class.java)
     }
